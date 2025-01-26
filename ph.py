@@ -31,45 +31,6 @@ def grading(theta, wavelength, b, I0, d, number_slits):
     return result_intensity
 
 
-def wavelength_to_rgb(wavelength):
-    if 380 * 1e-9 <= wavelength < 440 * 1e-9:  # Violet to blue
-        r = -(wavelength - 440 * 1e-9) / (440 * 1e-9 - 380 * 1e-9)
-        g = 0.0
-        b = 1.0
-    elif 440 * 1e-9 <= wavelength < 490 * 1e-9:  # Blue to cyan
-        r = 0.0
-        g = (wavelength - 440 * 1e-9) / (490 * 1e-9 - 440 * 1e-9)
-        b = 1.0
-    elif 490 * 1e-9 <= wavelength < 510 * 1e-9:  # Cyan to green
-        r = 0.0
-        g = 1.0
-        b = -(wavelength - 510 * 1e-9) / (510 * 1e-9 - 490 * 1e-9)
-    elif 510 * 1e-9 <= wavelength < 580 * 1e-9:  # Green to yellow
-        r = (wavelength - 510 * 1e-9) / (580 * 1e-9 - 510 * 1e-9)
-        g = 1.0
-        b = 0.0
-    elif 580 * 1e-9 <= wavelength < 645 * 1e-9:  # Yellow to red
-        r = 1.0
-        g = -(wavelength - 645 * 1e-9) / (645 * 1e-9 - 580 * 1e-9)
-        b = 0.0
-    elif 645 * 1e-9 <= wavelength <= 780 * 1e-9:  # Red
-        r = 1.0
-        g = 0.0
-        b = 0.0
-    else:
-        r = g = b = 0.0  # Wavelength outside visible range
-
-    # Intensity adjustment for wavelengths outside 700-780 nm
-    if wavelength > 700 * 1e-9:
-        fac = 0.3 + 0.7 * (780 * 1e-9 - wavelength) / (780 * 1e-9 - 700 * 1e-9)
-    elif wavelength < 420 * 1e-9:
-        fac = 0.3 + 0.7 * (wavelength - 380 * 1e-9) / (420 * 1e-9 - 380 * 1e-9)
-    else:
-        fac = 1.0
-
-    return r * fac, g * fac, b * fac
-
-
 # Settings --------
 factor = 50
 angle_min_lim = -0.001 * factor
