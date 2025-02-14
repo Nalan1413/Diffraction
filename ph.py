@@ -70,10 +70,10 @@ for dis in distance:
         Intensity = grading(theta_angle, light_wave_length, slit_width, intensity, dis, 50)
         peaks, _ = signal.find_peaks(Intensity)
         top_4_peak_indices = sorted(peaks, key=lambda x: Intensity[x], reverse=True)[:7]
-        top_4_peak_indices = sorted(top_4_peak_indices, key=lambda x: theta_angle[x], reverse=False)[:4]
+        top_4_peak_indices = sorted(top_4_peak_indices, key=lambda x: theta_angle[x], reverse=True)[:4]
 
         for i, peak_value in enumerate(top_4_peak_indices):
             rounded_value = round(theta_angle[peak_value], 10)
-            peak_dic[color][i].append(rounded_value)
+            peak_dic[color][3 - i].append(rounded_value)
 
 print(peak_dic)
